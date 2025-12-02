@@ -171,8 +171,6 @@ async def close_all_position(client, sub_id, eth_wallet):  ##### закрыва�
 # ---------------------------------------------------------
 async def main(wallet):
 
-    btc_price = await get_btc_price()
-
     client = await init_client(wallet)
 
     # получаем субаккаунты 1 раз
@@ -189,6 +187,9 @@ async def main(wallet):
 
 
     while True:
+        
+        btc_price = await get_btc_price()
+        
         balance = await get_balance(client=client,sub_id=sub_id)
 
         btc_amount = balance/btc_price
